@@ -1,0 +1,26 @@
+{
+  "name": "the-all-knowing",
+  "version": "1.0.0",
+  "description": "Check whether a username is available across many platforms, and hunt for rare usernames.",
+  "type": "commonjs",
+  "bin": {
+    "all-knowing": "username-finder.js"
+  },
+  "scripts": {
+    "check": "node username-finder.js check",
+    "rare": "node username-finder.js rare",
+    "start": "node username-finder.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "username",
+    "availability",
+    "handle",
+    "checker",
+    "cli"
+  ],
+  "author": "Timmeyfn",
+  "license": "MIT"
+}
