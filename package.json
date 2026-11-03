@@ -1,6 +1,6 @@
 {
   "name": "the-all-knowing",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Check whether a username is available across many platforms, and hunt for rare usernames.",
   "type": "commonjs",
   "bin": {

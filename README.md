@@ -25,9 +25,15 @@ node username-finder.js check vex --json
 ```
 
 Each platform is marked `AVAILABLE`, `taken`, or `unknown`. Platforms checked include
-GitHub, GitLab, Reddit, Instagram, TikTok, Twitch, YouTube, Pinterest, Steam, Telegram,
-Medium, Dev.to, Replit, SoundCloud, Spotify, Patreon, Behance, Dribbble, Keybase, npm,
-PyPI, Hacker News, Chess.com, and Mastodon.
+GitHub, **Roblox**, **Discord**, GitLab, Reddit, Instagram, TikTok, Twitch, YouTube,
+Pinterest, Steam, Telegram, Medium, Dev.to, Replit, SoundCloud, Spotify, Patreon,
+Behance, Dribbble, Keybase, npm, PyPI, Hacker News, Chess.com, and Mastodon.
+
+> **Roblox** uses its official public API, so results are reliable.
+> **Discord** is best-effort: since the unique-username change there's no public
+> profile lookup, so this uses Discord's signup availability check. It rate-limits
+> easily and will then show `unknown`. It checks the base name only (ignores the
+> `#tag`).
 
 ### Hunt for rare usernames
 
@@ -35,14 +41,25 @@ PyPI, Hacker News, Chess.com, and Mastodon.
 node username-finder.js rare --count 15 --len 4 --style pronounceable
 ```
 
-It generates candidates and keeps the ones that are free on 4+ major platforms.
+It generates candidates and, for each keeper, **lists exactly which major platforms
+it's free on** (GitHub, Roblox, Instagram, TikTok, Reddit, Twitch) — for example:
+
+```
+  ovut           free on: GitHub, Roblox, TikTok, Reddit
+```
+
+Only the major platforms are checked in `rare` mode, which is what makes it fast.
 
 | Flag        | Default         | Meaning                                              |
 |-------------|-----------------|------------------------------------------------------|
 | `--count N` | `20`            | How many rare picks to return                        |
 | `--len N`   | `4`             | Target length for generated handles                  |
 | `--style`   | `pronounceable` | `pronounceable`, `word`, or `leet` generation style  |
+| `--min N`   | `3`             | Require the name be free on at least N major platforms |
 | `--json`    | off             | Also print machine-readable JSON                     |
+
+On a school/work network, lots of checks get blocked, so you'll find fewer picks —
+lower `--min` (e.g. `--min 2`) or try from a home connection.
 
 ## How "available" is decided
 
